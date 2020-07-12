@@ -1,0 +1,36 @@
+Sub colorcode()
+Dim r As Range
+Dim i As Long
+Set r = Range("Q2:Q5000")
+For i = r.Rows.Count To 1 Step -1
+    With r.Cells(i, 1)
+        If .Value > 0 Then
+            .Interior.ColorIndex = 4
+        End If
+    End With
+Next i
+
+End Sub
+
+
+Sub colorcode()
+'Find the last non-blank cell in column A(1)
+    Dim Lastrow As Long
+    With ActiveSheet
+        Lastrow = .Cells(.Rows.Count, "A").End(xlUp).Row
+        
+    Dim start As Long
+    
+        start = 2
+Dim r As Range
+Dim i As Long
+Set r = Range("Q2:Lastrow")
+For i = r.Rows.Count To 1 Step -1
+    With r.Cells(i, 1)
+        If .Value > 0 Then
+            .Interior.ColorIndex = 4
+        End If
+    End With
+Next i
+
+End Sub

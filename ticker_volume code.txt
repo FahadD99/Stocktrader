@@ -1,0 +1,64 @@
+Sub Stockvolume()
+
+  ' Set an initial variable for holding the ticker
+  Dim ticker As String
+
+  ' Set an initial variable for holding the total volume for each ticker
+  Dim ticker_volume As Double
+  ticker_volume = 0
+
+  ' Keep track of the location for each ticker in the summary table
+  Dim Summary_Table_Row As Integer
+  Summary_Table_Row = 2
+  
+  'Find the last non-blank cell in column A(1)
+    Dim LastRow As Long
+    With ActiveSheet
+        LastRow = .Cells(.Rows.Count, "A").End(xlUp).Row
+
+  ' Loop through all tickers
+  For i = 2 To LastRow
+  
+    ' Check if we are still within the same ticker, if it is not...
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+      ' Set the Ticker
+      ticker = Cells(i, 1).Value
+
+      ' Add to the Ticker Volume
+      ticker_volume = ticker_volume + Cells(i, 7).Value
+
+      ' Print the ticker in the Summary Table
+      Range("M" & Summary_Table_Row).Value = ticker
+
+      ' Print the ticker volume Amount to the Summary Table
+      Range("N" & Summary_Table_Row).Value = ticker_volume
+
+      ' Add one to the summary table row
+      Summary_Table_Row = Summary_Table_Row + 1
+      
+      ' Reset the Ticker Volume
+      ticker_volume = 0
+
+    ' If the cell immediately following a row is the same brand...
+    Else
+
+      ' Add to the Ticker volume
+      ticker_volume = ticker_volume + Cells(i, 7).Value
+
+    End If
+
+  Next i
+  
+    End With
+
+        ' Add the word Ticker Volume to the Column Header
+        Range("N1").Value = "Ticker Volume"
+        
+          ' Add the word Ticker  to the Column Header
+        Range("M1").Value = "Ticker"
+        
+                ' Add the comma
+        Range("N2:N100000").NumberFormat = "#,##0"
+
+End Sub

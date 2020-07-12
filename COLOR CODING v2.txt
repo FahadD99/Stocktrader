@@ -1,0 +1,47 @@
+Sub colorcode_yearlychange()
+
+Dim r As Range
+
+Dim i As Long
+
+Set r = Range("Q2:Q100000")
+
+For i = r.Rows.Count To 1 Step -1
+    With r.Cells(i, 1)
+        If .Value > 0 Then
+            .Interior.ColorIndex = 4
+            
+        ElseIf .Value < 0 Then
+        .Interior.ColorIndex = 3
+        
+        End If
+    End With
+Next i
+
+End Sub
+
+Sub colorcode_percentchange()
+
+Dim r As Range
+
+Dim i As Long
+
+Set r = Range("R2:R100000")
+
+For i = r.Rows.Count To 1 Step -1
+    With r.Cells(i, 1)
+        If .Value > 0 Then
+        
+         'Green color coding for greater than 0
+            .Interior.ColorIndex = 4
+            
+        ElseIf .Value < 0 Then
+        'red color coding for less than 0
+        
+        .Interior.ColorIndex = 3
+        
+        End If
+    End With
+Next i
+
+End Sub

@@ -1,0 +1,58 @@
+Sub Stockprice()
+
+ ' Set an initial variable for holding the ticker
+  Dim ticker As String
+
+  ' Set an initial variable for holding the ticke price for each ticker
+  Dim ticker_price As Double
+  ticker_price = 0
+
+  ' Keep track of the location for each ticker in the summary table
+  Dim Summary_Table_Row As Integer
+  Summary_Table_Row = 2
+  
+  'Find the last non-blank cell in column A(1)
+    Dim LastRow As Long
+    With ActiveSheet
+        LastRow = .Cells(.Rows.Count, "A").End(xlUp).Row
+
+  ' Loop through all tickers
+  For i = 2 To LastRow
+  
+    ' Check if we are still within the same ticker, if it is not...
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+      ' Set the Ticker
+      ticker = Cells(i, 1).Value
+
+      ' Add to the Ticker price
+      ticker_price = Cells(i, 6).Value
+
+      ' Print the ticker in the Summary Table
+      Range("O" & Summary_Table_Row).Value = ticker
+
+      ' Print the ticker price Amount to the Summary Table
+      Range("P" & Summary_Table_Row).Value = ticker_price
+
+      ' Add one to the summary table row
+      Summary_Table_Row = Summary_Table_Row + 1
+      
+      ' Reset the Ticker price
+      ticker_price = 0
+
+    ' If the cell immediately following a row is the same ticker...
+    Else
+
+      ' Add to the Ticker price
+      ticker_price = Cells(i, 6).Value
+
+    End If
+
+  Next i
+  
+    End With
+        
+End Sub  
+
+  ' Add the word Close Price to the Column Header
+        Range("P1").Value = "Close Price"

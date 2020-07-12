@@ -1,0 +1,34 @@
+https://www.excelhowto.com/macros/formatting-a-range-of-cells-in-excel-vba/
+
+Formatting Cells Number
+General
+Range("A1").NumberFormat = "General"
+Number
+Range("A1").NumberFormat = "0.00"
+Currency
+Range("A1").NumberFormat = "$#,##0.00"
+Accounting
+Range("A1").NumberFormat = "_($* #,##0.00_);_($* (#,##0.00);_($* ""-""??_);_(@_)"
+Date
+Range("A1").NumberFormat = "yyyy-mm-dd;@"
+Time
+Range("A1").NumberFormat = "h:mm:ss AM/PM;@"
+Percentage
+Range("A1").NumberFormat = "0.00%"
+Fraction
+Range("A1").NumberFormat = "# ?/?"
+Scientific
+Range("A1").NumberFormat = "0.00E+00"
+Text
+Range("A1").NumberFormat = "@"
+Special
+Range("A1").NumberFormat = "00000"
+Custom
+Range("A1").NumberFormat = "$#,##0.00_);[Red]($#,##0.00)"
+
+
+
+Columns("A:A").NumberFormat = "General"
+Columns("A:A").NumberFormat = "Comma"
+Columns("A:A").NumberFormat = "Percent"
+Columns("A:A").NumberFormat = "Currency"
